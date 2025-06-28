@@ -1,0 +1,8 @@
+feedparser
+pyyaml
+click
+fuzzywuzzy[speedup]
+python-dateutil
+python-telegram-bot
+python-dotenv
+openai 

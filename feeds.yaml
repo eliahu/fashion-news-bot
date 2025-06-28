@@ -1,0 +1,13 @@
+feeds:
+  - name: Who What Wear
+    url: https://www.whowhatwear.com/uk/feeds.xml
+  - name: Women's Wear Daily
+    url: https://wwd.com/feed
+  - name: Fashionista
+    url: https://fashionista.com/.rss/excerpt/
+  - name: The Business of Fashion
+    url: https://www.businessoffashion.com/arc/outboundfeeds/rss/?outputType=xml
+  - name: Elle 
+    url: https://www.elle.com/rss/all.xml/
+  - name: Vogue
+    url: https://rss.app/feeds/SLjDgJde1E4U4cyD.xml
