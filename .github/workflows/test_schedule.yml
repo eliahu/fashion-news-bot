@@ -2,7 +2,7 @@ name: Test Scheduled Workflow
 
 on:
   schedule:
-    - cron: '20 21 * * *'  # 21:20 UTC
+    - cron: '26 21 * * *'  # 21:26 UTC
   workflow_dispatch:
 
 jobs:
