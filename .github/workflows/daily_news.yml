@@ -2,8 +2,10 @@ name: Daily Fashion News
 
 on:
   schedule:
-    # Runs daily at 21:16 UTC
-    - cron: '16 21 * * *'
+    # Multiple schedules to improve reliability
+    - cron: '16 21 * * *'  # 21:16 UTC
+    - cron: '17 21 * * *'  # 21:17 UTC (backup)
+    - cron: '18 21 * * *'  # 21:18 UTC (backup)
   workflow_dispatch:  # Allows manual trigger
   repository_dispatch:  # Allows external triggers
 
@@ -12,9 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Test workflow
-      run: echo "Workflow is running at $(date)"
-      
+    - name: Debug information
+      run: |
+        echo "Workflow triggered at: $(date)"
+        echo "GitHub Event: ${{ github.event_name }}"
+        echo "Repository: ${{ github.repository }}"
+        echo "Branch: ${{ github.ref }}"
+        echo "Actor: ${{ github.actor }}"
+        
     - name: Checkout code
       uses: actions/checkout@v4
       
@@ -34,4 +41,6 @@ jobs:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
       run: |
-        python daily_news_sender.py 
+        echo "Starting news sending at: $(date)"
+        python daily_news_sender.py
+        echo "News sending completed at: $(date)" 
