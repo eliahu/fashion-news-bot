@@ -2,8 +2,8 @@ name: Daily Fashion News
 
 on:
   schedule:
-    # Runs daily at 22:53 CET (21:53 UTC)
-    - cron: '53 21 * * *'
+    # Runs daily at 21:00 UTC
+    - cron: '0 21 * * *'
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
