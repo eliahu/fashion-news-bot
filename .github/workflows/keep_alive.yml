@@ -1,0 +1,16 @@
+name: Keep Repository Active
+
+on:
+  schedule:
+    # Run every 6 hours to keep repository active
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Keep repository active
+      run: |
+        echo "Repository is active at $(date)"
+        echo "This helps ensure scheduled workflows run reliably" 
