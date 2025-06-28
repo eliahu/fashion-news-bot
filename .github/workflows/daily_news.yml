@@ -5,6 +5,7 @@ on:
     # Runs daily at 21:00 UTC
     - cron: '0 21 * * *'
   workflow_dispatch:  # Allows manual trigger
+  repository_dispatch:  # Allows external triggers
 
 jobs:
   send-news:
