@@ -10,6 +10,7 @@ from dateutil import tz
 from fuzzywuzzy import fuzz
 import re
 import openai
+from openai import OpenAI
 
 def get_top_news(max_items=50):
     feeds = load_feeds()
@@ -95,21 +96,21 @@ def format_news_item(entry):
     return msg
 
 def get_openai_selected_titles(entries):
-    openai.api_key = os.getenv('OPENAI_API_KEY')
+    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
     titles = [entry['title'] for entry in entries]
     prompt = (
-        "Act as a fashion enthusiast. Read all the titles and return from 5 to 7 the most interesting news that tell about people, or new trends or new collections. Include one item (but not more than one) about Anna Vintour if there's something about her. Avoide news about sales."
+        "Act as a fashion enthusiast. Read all the titles and return from 5 to 7 the most interesting news that tell about people, or new trends or new collections. Include one piece of news about Anna Vintour if there's something about her. Avoide news about sales."
         "Return only the exact titles, one per line, no extra text."
     )
     joined_titles = '\n'.join(titles)
     full_prompt = f"{prompt}\n\nTITLES:\n{joined_titles}"
-    response = openai.ChatCompletion.create(
-        model="gpt-4.1-mini-2025-04-14",
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
         messages=[{"role": "user", "content": full_prompt}],
         max_tokens=512,
         temperature=0.2,
     )
-    result = response.choices[0].message['content']
+    result = response.choices[0].message.content
     selected_titles = [line.strip() for line in result.split('\n') if line.strip()]
     return selected_titles
 
