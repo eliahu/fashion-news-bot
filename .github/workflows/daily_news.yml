@@ -2,10 +2,8 @@ name: Daily Fashion News
 
 on:
   schedule:
-    # Multiple times per day to increase reliability
-    - cron: '0 21 * * *'  # 21:00 UTC (main time)
-    - cron: '30 21 * * *' # 21:30 UTC (backup)
-    - cron: '0 22 * * *'  # 22:00 UTC (backup)
+    # Runs daily at 21:16 UTC
+    - cron: '16 21 * * *'
   workflow_dispatch:  # Allows manual trigger
   repository_dispatch:  # Allows external triggers
 
